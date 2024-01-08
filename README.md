@@ -1,5 +1,5 @@
 # blockchain-wallet
-
+This project serves as an introduction for me into the world of developing blockchain technologies. This is a simple wallet front end using Vue/Vite.
 ## Project Setup
 
 ```sh
