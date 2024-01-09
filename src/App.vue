@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
-
+import { getWallet } from './services/wallet';
 // Define reactive variables for the form inputs
 const publicKey = ref('');
 const privateKey = ref('');
@@ -9,7 +9,24 @@ const address = ref('');
 const sendingToAddress = ref('');
 const count = ref(0);
 const amount = ref(0);
+const getData = async () => {
+  try {
+    // Assuming address and amount are already defined, modify as needed
+    const walletData = await getWallet();
 
+    // Update state with the received wallet data
+    publicKey.value = walletData.public_key;
+    privateKey.value = walletData.private_key;
+    address.value = walletData.blockchain_address;
+
+  } catch (error) {
+    console.error('Error making POST request:', error);
+  }
+};
+
+onMounted(() => {
+  getData();
+});
 // Function to handle the form submission
 const sendFormData = () => {
   // Create JSON data from form inputs
@@ -21,9 +38,11 @@ const sendFormData = () => {
     amount: amount.value,
     count: count.value,
   };
-
   // TODO: Make API call with formData
   // Example: axios.post('/api/endpoint', formData).then(response => {...});
+  // on load make axios post request using getWallet function
+
+  
 };
 </script>
 
