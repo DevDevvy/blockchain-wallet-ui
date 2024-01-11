@@ -1,29 +1,9 @@
-<script>
-  import background from '@/assets/background.jpg';
-  export default {
-  data() {
-    return {
-      background
-    };
-  },
-};
+<script setup lang="ts">
+import AboutUs from '../components/AboutUs.vue'
 </script>
 
 <template>
-  <v-parallax
-    :src="background"
-  >
-    <div class="about">
-      <h1>
-        Vuetify
-      </h1>
-      <h4 class="subheading">
-        Build your application today!
-      </h4>
-    </div>
-  </v-parallax>
+  <main>
+    <AboutUs />
+  </main>
 </template>
-
-<style>
-
-</style>
